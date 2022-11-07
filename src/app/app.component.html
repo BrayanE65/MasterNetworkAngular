@@ -480,5 +480,10 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<router-outlet></router-outlet>
+<mat-drawer-container>
+  <mat-drawer #drawer mode="side">
+    <a [routerLink]="['Home']">Inicio</a>
+    <a [routerLink]="['Producto']">Producto</a>
+  </mat-drawer>
+     <router-outlet></router-outlet>
+</mat-drawer-container>
