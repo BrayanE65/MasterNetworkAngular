@@ -9,12 +9,13 @@ import { response } from '../models/response';
 })
 export class ProductosComponent implements OnInit {
 
-  public lst: any[]=[];
-  public columnas : string[] = ['Id','nombre']
+  public list: any[] = [];
+  public columnas : string[] = ['Id','nombre','precioUnitario','costo']
 
-  constructor(private apiProductos: ProductosService) { 
+  constructor(public apiProductos: ProductosService) { 
     apiProductos.getProductos().subscribe( response =>{console.log(response)}
-  )}
+  )
+}
 
   ngOnInit(): void {
     this.getProductos();
@@ -22,7 +23,7 @@ export class ProductosComponent implements OnInit {
 
   getProductos() {
     this.apiProductos.getProductos().subscribe( response =>{
-      this.lst= response.data;
+      this.list= response.datos;
   });
 
 }
