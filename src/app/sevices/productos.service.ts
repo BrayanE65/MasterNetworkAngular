@@ -1,7 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Producto } from '../models/Producto';
 import { response } from '../models/response';
+
+const httpOption={
+  headers:new HttpHeaders({
+    'Contend-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +22,8 @@ export class ProductosService {
 
   getProductos():Observable<response>{
        return this._http.get<response>(this.url);
+  }
+  add(producto:Producto): Observable<response> {
+       return this._http.post<response>(this.url, producto, httpOption);
   }
 }
