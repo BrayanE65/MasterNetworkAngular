@@ -23,7 +23,17 @@ export class ProductosService {
   getProductos():Observable<response>{
        return this._http.get<response>(this.url);
   }
+
   add(producto:Producto): Observable<response> {
        return this._http.post<response>(this.url, producto, httpOption);
   }
+
+  edit(producto:Producto): Observable<response> {
+    return this._http.put<response>(this.url, producto, httpOption);
+  }
+
+  delete(id:number): Observable<response> {
+      return this._http.delete<response>(`${this.url}/${id}`);
+}
+
 }

@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { FormsModule } from '@angular/forms';
+import { DialogAlertComponent } from './dialog-alert/dialog-alert.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     ProductosComponent,
     HomeComponent,
-    DialogComponent
+    DialogComponent,
+    DialogAlertComponent
   ],
   imports: [
     BrowserModule,

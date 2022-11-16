@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Producto } from '../models/Producto';
 import { ProductosService } from '../sevices/productos.service';
@@ -17,15 +17,21 @@ export class DialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     public apiProductos: ProductosService,
-    public snackBar: MatSnackBar
-  ) { }
+    public snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public producto : Producto
+
+  ) { 
+    if (this.producto !== null){
+       this.nombre = producto.nombre;
+    }
+  }
 
   close(){
     this.dialogRef.close();
   }
 
    addProducto(){
-    const producto: Producto = {nombre: this.nombre};
+    const producto: Producto = {nombre: this.nombre,id: this.producto.id};
     this.apiProductos.add(producto).subscribe(response =>{
       if (response.exito === 1){
         this.dialogRef.close();
@@ -33,6 +39,17 @@ export class DialogComponent implements OnInit {
       }
     })
    }
+
+   editProducto(){
+    const producto: Producto = {nombre: this.nombre, id: this.producto.id};
+    this.apiProductos.edit(producto).subscribe(response =>{
+      if (response.exito === 1){
+        this.dialogRef.close();
+        this.snackBar.open('Producto Editado con Exito!!', '' ,{duration:2000})
+      }
+    })
+   }
+
 
   ngOnInit(): void {
   }
