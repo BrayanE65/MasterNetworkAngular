@@ -51,8 +51,10 @@ export class ProductosComponent implements OnInit {
     dialogRef.afterClosed().subscribe( result =>{
      if(result){
       this.apiProductos.delete(producto.id).subscribe(response => {if (response.exito == 1){
-      this.snackBar.open('Producto Eliminado con Exito!!', '' ,{duration:2000})}})
+      this.snackBar.open('Producto Eliminado con Exito!!', '' ,{duration:2000});
       this.getProductos();
+    }})
+      
      }
       
     })

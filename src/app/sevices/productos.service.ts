@@ -32,8 +32,8 @@ export class ProductosService {
     return this._http.put<response>(this.url, producto, httpOption);
   }
 
-  delete(id:number): Observable<response> {
-      return this._http.delete<response>(`${this.url}/${id}`);
+  delete(Id:number): Observable<response> {
+      return this._http.delete<response>(`${this.url}/${Id}`);
 }
 
 }
